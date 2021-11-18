@@ -1,0 +1,36 @@
+say "Fibonacci sequence"
+input = 21
+fibonacci(input)
+
+fibonacci:
+  parse arg numToGen
+  
+  if numToGen <= 0 then do
+    say "No numbers generated"
+    exit
+  end
+  
+  list = "1"
+  lastNum = 1
+  curNum = 1
+  
+  do generated=2 to numToGen
+  
+    if generated//8 == 0 then do
+      /*To keep line from going off screen
+        Return character '0a0d'x wouldn't work, this is workaround
+      */
+      
+      say list
+      list = ""curNum
+    end  
+    else do
+      list = list", "curNum
+    end
+    
+    curNum = lastNum+curNum
+    lastNum = curNum - lastNum
+  end
+  
+  say list
+    
