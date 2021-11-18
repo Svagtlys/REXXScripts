@@ -1,0 +1,25 @@
+say triangleGenerator(15)
+exit
+
+triangleGenerator:
+  parse arg line
+  
+  do i = line+1 to 1 by -1
+    string = ""
+    
+    go j = i to 0 by -1
+      if i == line+1 then do /*If top line where solid leg is needed*/
+        if j == i | j == 0 then string = string" "
+        else string = string"_"
+      end
+      else do
+        select
+          when j == i then string = string"|"
+          when j == 0 then string = string"/"
+          otherwise string = string" "
+        end
+      end
+    end
+    
+    say string
+end
